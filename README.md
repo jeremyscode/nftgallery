@@ -1,14 +1,12 @@
 # NFTGallery Flask App
 
-View live:  [NFTgallery](https://nftgallery.funtnternetthings.com/)
-
  - Get View NFTs in owner address
  - Get NFT collection
  - Get Owners NFTs in a Caollection
 
 # Install
 
-    git clone https://gitlab.com/abvavgjeremy/nftgallery.git
+    git clone https://github.com/ephergent/nftgallery.git
     cd nftgallery
     virtualenv -p python3 venv
     source venv/bin/activate
