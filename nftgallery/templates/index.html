@@ -1,0 +1,136 @@
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="title is-1">
+  NFT Gallery
+</h3>
+<!--form-->
+<div class="columns is-mobile is-multiline is-centered">
+    <div class="box">
+        <form method="POST" action="/" enctype="multipart/form-data">
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="owner_address" placeholder="Add your wallet address" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="collection_address" placeholder="Add the collection address" autofocus="">
+                </div>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" name="checkbox">
+              Fetch for collection
+            </label>
+            <br/>
+            <br/>
+            <button class="button is-block is-black is-large is-fullwidth">Let's go!</button>
+        </form>
+    </div>
+</div>
+<!--end form-->
+<!--{{nft_list}}-->
+    {% if nft_list.ownedNfts %}
+    <!-- owner -->
+        <div class="container">
+                  <div class="section">
+                    <div class="columns">
+                      <div class="column has-text-centered">
+                        <h1 class="title" style="color: ghostwhite;">NFT Gallery Images:</h1><br>
+                      </div>
+                    </div>
+                    <div id="app" class="row columns is-multiline">
+                        {% for nft in nft_list.ownedNfts %}
+                      <div class="column is-4">
+                        <div class="card large">
+                          <div class="card-image">
+                            <figure class="image">
+                                <img src="{{ nft.media[0].gateway }}" width="25%">
+                            </figure>
+                          </div>
+                          <div class="card-content">
+                            <div class="content">
+                                <p>
+                              <span>View on Etherscan:</span>
+                                            <a href="https://etherscan.io/nft/{{nft.contract.address}}/{{ nft.id.tokenId | int(nft.id.tokenId,16) }}" >
+                                                <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                </p>
+                                <p>
+                                <span>View on Rarible:</span>
+                                            <a href="https://rarible.com/token/{{nft.contract.address}}:{{ nft.id.tokenId | int(nft.id.tokenId,16) }}" >
+                                                <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+    {% elif nft_list.nfts %}
+    <!--collection-->
+        <div class="container">
+              <div class="section">
+                <div class="columns">
+                  <div class="column has-text-centered">
+                    <h1 class="title" style="color: ghostwhite;">NFT Gallery Images:</h1><br>
+                  </div>
+                </div>
+                <div id="app" class="row columns is-multiline">
+                    {% for nft in nft_list.nfts %}
+                  <div class="column is-4">
+                    <div class="card large">
+                      <div class="card-image">
+                        <figure class="image">
+                            <img src="{{ nft.media[0].gateway }}" width="25%">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content">
+                            <p>
+                          <span>View on Etherscan:</span>
+                                        <a href="https://etherscan.io/nft/{{nft.contract.address}}/{{ nft.id.tokenId | int(nft.id.tokenId,16) }}" >
+                                            <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i>
+                                            </span>
+                                        </a>
+                            </p>
+                            <p>
+                            <span>View on Rarible:</span>
+                                        <a href="https://rarible.com/token/{{nft.contract.address}}:{{ nft.id.tokenId | int(nft.id.tokenId,16) }}" >
+                                            <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i>
+                                            </span>
+                                        </a>
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+        <!--Next Page of collection -->
+        {% if next_token %}
+            <form method="POST" action="/{{nft_list.nfts[0].contract.address}}/{{next_token}}" enctype="multipart/form-data">
+                <button class="button is-block is-black is-large is-fullwidth">Go to Next Page</button>
+            </form>
+        {% endif %}
+
+    {% else %}
+        <div class="column has-text-centered">
+            <h1 class="title" style="color: ghostwhite;">Sorry, No NFTs to show.</h1><br>
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}
