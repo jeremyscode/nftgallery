@@ -25,10 +25,10 @@ Open `http://127.0.0.1:5000/` in browser of choice.
 
 ### Screenshots
 
-![Screenshot1](Screenshot1.png)
+![Screenshot1](screenshot_01.png)
 
 
-![Screenshot1](Screenshot2.png)
+![Screenshot2](screenshot_02.png)
 
 
 
