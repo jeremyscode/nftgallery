@@ -12,7 +12,7 @@
     source venv/bin/activate
     pip install -r requirements.txt
 
-*[Note: See an example .env file below]*
+*[Note: See an example .env file below, or copy env-example to .env]*
 
     source .env
 
@@ -29,7 +29,6 @@ Open `http://127.0.0.1:5000/` in browser of choice.
 
 
 ![Screenshot1](Screenshot2.png)
-
 
 
 
