@@ -4,6 +4,8 @@
  - Get NFT collection
  - Get Owners NFTs in a Caollection
 
+***** ARCHIVED REPO *****
+   
 # Install
 
     git clone https://github.com/ephergent/nftgallery.git
